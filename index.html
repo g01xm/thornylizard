@@ -3,240 +3,281 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thornylizard</title>
+  <title>App Showcase</title>
   <style>
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
-      background-color: #f9fafb;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #f7f7f7;
       color: #333;
+      text-align: center;
     }
+
     header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background: #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 24px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
       z-index: 1000;
     }
-    header h1 {
-      font-size: 20px;
-      font-weight: 600;
-    }
-    header img {
-      width: 160px;
-      transition: transform 0.3s ease;
-      filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
-    }
-    header img:hover { transform: scale(1.05); }
 
-    section { padding: 80px 20px 60px; max-width: 900px; margin: 0 auto; text-align: center; }
-    h2 { font-size: 26px; margin-bottom: 10px; font-weight: 600; }
-    p { line-height: 1.6; color: #555; }
+    .header-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      font-size: 16px;
+    }
 
-    /* Carousel */
+    .header-links a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.2s;
+    }
+
+    .header-links a:hover {
+      color: #007aff;
+    }
+
+    /* 幻灯片容器 */
     .carousel-container {
+      margin-top: 100px;
       position: relative;
       width: 100%;
       overflow: hidden;
-      height: 380px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 1000px;
     }
+
     .carousel {
       display: flex;
-      transition: transform 0.8s ease-in-out;
+      transition: transform 0.6s ease;
     }
+
     .slide {
-      flex-shrink: 0;
-      width: 80vw;
-      max-width: 380px;
-      height: 250px;
-      margin: 0 10px;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: transform 0.8s ease;
-      transform-origin: center;
-    }
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .slide.active {
-      transform: scale(1.1) translateZ(60px);
-      z-index: 2;
-    }
-
-    /* App Store logo below carousel */
-    .store-badge {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .store-badge img {
-      width: 180px;
-      transition: transform 0.3s;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-    }
-    .store-badge img:hover { transform: scale(1.08); }
-
-    /* Privacy Policy */
-    .policy, .contact {
-      text-align: left;
-      max-width: 700px;
-      margin: 60px auto;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .policy h3, .contact h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 20px;
-    }
-
-    /* Contact Us form */
-    form {
+      min-width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      align-items: center;
     }
+
+    .slide img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .caption {
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    /* App Store 按钮 */
+    .appstore-button {
+      display: block;
+      margin: 25px auto;
+      width: 220px;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .appstore-button:hover {
+      transform: scale(1.08);
+    }
+
+    /* Contact Form */
+    section {
+      padding: 60px 20px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
     input, textarea {
-      padding: 10px;
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 15px;
+      border-radius: 6px;
+      font-size: 16px;
       width: 100%;
     }
+
     button {
-      background-color: #2563eb;
+      background-color: #007aff;
       color: white;
-      padding: 10px;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      padding: 12px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-size: 16px;
     }
-    button:hover { background-color: #1d4ed8; }
+
+    button:hover {
+      background-color: #005ecb;
+    }
 
     footer {
-      text-align: center;
-      padding: 20px;
+      padding: 25px 0;
       font-size: 14px;
-      color: #888;
-      border-top: 1px solid #eee;
+      color: #666;
     }
 
-    @media (max-width: 600px) {
-      section { padding: 60px 16px; }
-      .carousel-container { height: 300px; }
-      .slide { width: 85vw; height: 220px; }
+    @media (max-width: 768px) {
+      .caption {
+        font-size: 16px;
+      }
+
+      .appstore-button {
+        width: 180px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Thornylizard</h1>
-    <a href="https://apps.apple.com/ua/developer/wu-huang/id593438786" target="_blank">
-      <img src="appstore.png" alt="App Store" />
-    </a>
+    <div class="header-links">
+      <a href="#privacy">Privacy Policy</a>
+      <a href="#contact">Contact Us</a>
+    </div>
   </header>
 
-  <section style="padding-top:100px;">
-    <h2>Our Mobile Apps</h2>
-    <p>Innovative tools designed to make your workflow simpler and faster.</p>
-
-    <div class="carousel-container">
-      <div class="carousel" id="carousel">
-        <div class="slide active"><img src="tu1.png" alt="App 1"></div>
-        <div class="slide"><img src="tu2.png" alt="App 2"></div>
-        <div class="slide"><img src="tu3.png" alt="App 3"></div>
-        <div class="slide"><img src="tu4.png" alt="App 4"></div>
-        <div class="slide"><img src="tu5.png" alt="App 5"></div>
-        <div class="slide"><img src="tu6.png" alt="App 6"></div>
+  <div class="carousel-container">
+    <div class="carousel" id="carousel">
+      <div class="slide">
+        <img src="tu1.png" alt="screenshot 1">
+        <div class="caption">Download From App Store</div>
+      </div>
+      <div class="slide">
+        <img src="tu2.png" alt="screenshot 2">
+        <div class="caption">Spirograph changes with four inputs</div>
+      </div>
+      <div class="slide">
+        <img src="tu3.png" alt="screenshot 3">
+        <div class="caption">LeaseMe generates model & property release electronically</div>
+      </div>
+      <div class="slide">
+        <img src="tu4.png" alt="screenshot 4">
+        <div class="caption">YouPaid: small merchant membership app</div>
+      </div>
+      <div class="slide">
+        <img src="tu5.png" alt="screenshot 5">
+        <div class="caption">MemorizeEmoji: Card Matching Game</div>
+      </div>
+      <div class="slide">
+        <img src="tu6.png" alt="screenshot 6">
+        <div class="caption">EmojiArtTool: create beautiful artwork</div>
       </div>
     </div>
+  </div>
 
-    <div class="store-badge">
-      <a href="https://apps.apple.com/ua/developer/wu-huang/id593438786" target="_blank">
-        <img src="appstore.png" alt="Download on App Store">
-      </a>
-    </div>
-  </section>
+  <!-- App Store 按钮 -->
+  <a href="https://apps.apple.com/ua/developer/wu-huang/id593438786" target="_blank">
+    <img src="appstore.png" alt="App Store" class="appstore-button" />
+  </a>
 
-  <section class="policy">
-    <h2>Privacy Policy</h2>
+  <!-- Privacy Policy -->
+
+
+  <section id="policy" style="text-align: left; max-width: 800px; margin: 0 auto;">
+    <h1 style="text-align:center;margin-bottom:20px;">Privacy Policy</h1>
     <p><strong>Last updated:</strong> October 24, 2025</p>
     <p><strong>Company:</strong> Thornylizard</p>
     <p>Thornylizard (“we”, “our”, or “us”) develops and provides mobile applications (the “Apps”) available on the App Store. This Privacy Policy explains how we handle information when you use our Apps.</p>
-    <h3>1. Information We Do Not Collect</h3>
-    <p>We do not collect, store, or share any personal information from users. Our Apps do not require account registration, email addresses, or any form of personal data input. We also do not access or collect data such as: contact information, location data, photos, videos, or files, device identifiers or advertising data.</p>
-    <h3>2. No Third-Party Services</h3>
+  
+    <h2>1. Information We Do Not Collect</h2>
+    <p>We do not collect, store, or share any personal information from users. Our Apps do not require account registration, email addresses, or any form of personal data input.</p>
+    <p>We also do not access or collect data such as:</p>
+    <ul>
+      <li>Contact information</li>
+      <li>Location data</li>
+      <li>Photos, videos, or files</li>
+      <li>Device identifiers or advertising data</li>
+    </ul>
+  
+    <h2>2. No Third-Party Services</h2>
     <p>Our Apps do not use any third-party analytics, advertising, or tracking services.</p>
-    <h3>3. Data Storage</h3>
+  
+    <h2>3. Data Storage</h2>
     <p>All data generated or entered within the App (for example, notes, accounting records, or model releases) is stored locally on your device only. We have no access to that data.</p>
-    <h3>4. Children’s Privacy</h3>
+  
+    <h2>4. Children’s Privacy</h2>
     <p>Our Apps are suitable for users of all ages, including children.</p>
-    <h3>5. Data Deletion</h3>
+  
+    <h2>5. Data Deletion</h2>
     <p>Because we do not collect or store any user data on our servers, there is nothing for us to delete. Users can delete all App data at any time by uninstalling the App from their device.</p>
-    <h3>6. Changes to This Policy</h3>
+  
+    <h2>6. Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. Updates will be posted with a new “Last updated” date. Continued use of our Apps means you accept the updated policy.</p>
   </section>
 
-  <section class="contact">
+  <!-- Contact Form -->
+  <section id="contact">
     <h2>Contact Us</h2>
-    <form id="contactForm">
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+    <form id="contact-form" action="https://formspree.io/f/xyznrrow" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="_replyto" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
       <button type="submit">Send Message</button>
-      <p id="statusMsg" style="font-size:14px; color:#2563eb;"></p>
+      <p id="form-status"></p>
     </form>
   </section>
 
-  <footer>© 2025 Thornylizard. All rights reserved.</footer>
+  <footer>
+    © 2025 Wu Huang. All rights reserved.
+  </footer>
 
   <script>
-    // 轮播逻辑
-    const slides = document.querySelectorAll(".slide");
-    let currentIndex = 0;
-    function showNextSlide() {
-      slides[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add("active");
-      const offset = -currentIndex * (slides[0].offsetWidth + 20);
-      document.getElementById("carousel").style.transform = `translateX(${offset}px)`;
-    }
-    setInterval(showNextSlide, 4000);
+    // 自动轮播逻辑
+    const carousel = document.getElementById('carousel');
+    let index = 0;
+    const slides = document.querySelectorAll('.slide');
 
-    // Formspree AJAX
-    document.getElementById("contactForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const status = document.getElementById("statusMsg");
-      status.textContent = "Sending...";
-      const data = {
-        email: e.target.email.value,
-        message: e.target.message.value
-      };
-      const res = await fetch("https://formspree.io/f/xyznrrow", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-      if (res.ok) {
-        status.textContent = "Message sent successfully!";
-        e.target.reset();
-      } else {
-        status.style.color = "red";
-        status.textContent = "Error sending message. Try again later.";
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(nextSlide, 4000);
+
+    // AJAX 表单提交
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          status.textContent = "Thanks for your message!";
+          form.reset();
+        } else {
+          status.textContent = "Oops! There was a problem submitting your form.";
+        }
+      } catch (error) {
+        status.textContent = "Network error. Please try again.";
       }
     });
   </script>
