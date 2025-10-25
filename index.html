@@ -28,29 +28,6 @@ nav a {
 }
 nav a:hover { color: #000; }
 
-/* 页眉固定 App Store 按钮 - 更大醒目 */
-.header-appstore {
-  position: fixed;
-  top: 10px;
-  right: 20px;
-  z-index: 1000;
-  cursor: pointer;
-}
-.header-appstore img {
-  width: 120px;  /* 放大 */
-  height: auto;
-  transition: transform 0.3s;
-}
-.header-appstore img:hover {
-  transform: scale(1.1); /* 悬停放大 */
-}
-
-/* 手机端自适应 */
-@media (max-width: 768px) {
-  .header-appstore img {
-    width: 70px; /* 手机端稍小 */
-  }
-}
 
 /* Carousel */
 .carousel-wrapper {
